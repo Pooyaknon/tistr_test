@@ -1,0 +1,10 @@
+tistr_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: athena
+      s3_staging_dir: s3://tistr-data-lake/athena-results/
+      region_name: ap-southeast-2
+      database: tistr_data_warehouse
+      schema: dev_marts
+      workgroup: primary

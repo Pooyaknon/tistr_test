@@ -1,0 +1,43 @@
+-- models/staging/stg_employee_position.sql
+with hris as (
+    select * from {{ source('hris_systems', 'stg_employee_position') }}
+)
+select
+    employee_position_id,
+    employee_id,
+    main_position_id,
+    position_level,
+    minorposition as minor_position,
+    src_org_code,
+    business_group_code,
+    office_code,
+    division_code,
+    department_code,
+    employment_type_id,
+    position_type_id,
+    employee_group_id,
+    expertise_id,
+    expertise_detail,
+    start_date,
+    end_date,
+    appointment_date,
+    status_effective_date,
+    total_effective_date,
+    manager_effective_date,
+    tenure_start_date,
+    work_schedule_id,
+    schedule_change_date,
+    benefits_of_tistr,
+    fund_type,
+    fund_contribution_pct,
+    _fund_ref_no_#0 as fund_ref_no,,
+    is_cremation_member,
+    employee_office_phone,
+    status_code,
+    admin_emp_id,
+    created_date,
+    updated_date,
+    position_status,
+    cast(current_timestamp as timestamp) as load_ts,
+    'HRIS' as source_system
+from hris

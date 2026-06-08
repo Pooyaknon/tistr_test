@@ -1,0 +1,34 @@
+# dbt_project.yml
+
+name: 'tistr_dbt'
+version: '1.0.0'
+profile: 'tistr_dbt'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  tistr_dbt:
+    staging:
+      +materialized: view
+    marts: 
+        +materialized: incremental
+        +file_format: parquet
+
+
+seeds:
+  tistr_dbt:  
+    dim_workplace: 
+      +column_types:
+        wide: decimal(10,2)
+        long: decimal(10,2)
+        high: decimal(10,2)
+        area: decimal(10,2)
